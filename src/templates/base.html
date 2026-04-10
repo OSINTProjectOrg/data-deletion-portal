@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/defaults.css') }}">
+{% block styles %}{% endblock %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title displayed in web browsers tab -->
+<title>Data Removal Portal - OSINTProjects.org</title>
+
+<div class="mft-osintorg-header">
+    {% block header %}
+    <div class="mft-osintorg-header-contents">
+        Hello World
+    </div>
+    {% endblock %}
+</div>
+
+<div class="mft-osintorg">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div class="mft-osintorg-footer">
+    {% block footer %}
+    <div class="mft-osintorg-footer-contents">
+        Hello World
+    </div>
+    {% endblock %}
+</div>
+
+{% block scripts %}
+{% endblock %}

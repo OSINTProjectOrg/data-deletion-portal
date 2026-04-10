@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/index.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="mft-content-container">
+        <div class="mft-interactive">
+            <div class="mft-title">
+                <h1>OSINTProject.org/brokers</h1>
+            </div>
+            <div class="mft-role">
+                <h2 id="mft-role-header">--placeholder-js error loading js configuration</h2><h2 class="mft-blinking-cursor">|</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+{% endblock %}
