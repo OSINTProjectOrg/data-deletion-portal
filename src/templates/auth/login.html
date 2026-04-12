@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<mft-content>
+    <h2>Log In</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.email.label }}<br>{{ form.email() }}</p>
+        <p>{{ form.password.label }}<br>{{ form.password() }}</p>
+        <p>{{ form.submit(class="btn") }}</p>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('auth.mft_SignupPage') }}">Create one here</a>.</p>
+</mft-content>
+{% endblock %}

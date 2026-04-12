@@ -66,10 +66,10 @@ def mft_LoginPage():
             flash(f"Welcome back, {user.username}!", "success")
             # Preserve a "next" param if the user was redirected here
             next_endpoint = request.args.get("next")
-            return redirect(url_for(next_endpoint) if next_endpoint else url_for("dashboard.mft_DashPage"))
+            return redirect(url_for(next_endpoint) if next_endpoint else url_for("auth.mft_DashPage"))
         else:
             flash("Invalid e-mail or password.", "danger")
-    return render_template("login.html", form=form)
+    return render_template("auth/login.html", form=form)
 
 
 # --------------------------------------------------------------
@@ -92,8 +92,8 @@ def mft_SignupPage():
         session["user_id"] = user.id
         session["username"] = user.username
         flash("Account created. You are now logged in!", "success")
-        return redirect(url_for("dashboard.mft_DashPage"))
-    return render_template("signup.html", form=form)
+        return redirect(url_for("auth.mft_DashPage"))
+    return render_template("auth/signup.html", form=form)
 
 
 # --------------------------------------------------------------
@@ -115,4 +115,4 @@ def mft_LogoutPage():
 def mft_DashPage():
     # Grab the user object if you’d like to display extra info.
     user = User.query.get(session["user_id"])
-    return render_template("dashboard.html", user=user)
+    return render_template("dashboard/user_dash.html", user=user)

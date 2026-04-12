@@ -1,33 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/defaults.css') }}">
-{% block styles %}{% endblock %}
+    <head>
+        <meta charset="utf-8">
+        <title>OSINTProject -- {% block title %}Home{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/defaults.css') }}">
+        {% block styles %}{% endblock %}
+    </head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Title displayed in web browsers tab -->
-<title>Data Removal Portal - OSINTProjects.org</title>
+    <header>
+        <h1>OSINTProject.org</h1>
+        {% if session.get('username') %}
+        <nav>
+            <a href="{{ url_for('auth.MFT_DashPage') }}">Dashboard</a>
+            <a href="{{ url_for('auth.mft_LogoutPage') }}">Logout</a>
+        </nav>
+        {% else %}
+        <nav>
+            <a href="{{ url_for('auth.mft_LoginPage') }}">Login</a>
+            <a href="{{ url_for('auth.mft_SignupPage') }}">Sign Up</a>
+        </nav>
+        {% endif %}
+    </header>
 
-<div class="mft-osintorg-header">
-    {% block header %}
-    <div class="mft-osintorg-header-contents">
-        Hello World
-    </div>
+
+    <body>
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, msg in messages %}
+                    <li class="{{ category }}">{{ msg }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+
+
+    <footer>
+        <p>&copy; 2026 OSINTProject.org</p>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/defaults.js') }}"></script>
+    {% block scripts %}
     {% endblock %}
-</div>
 
-<div class="mft-osintorg">
-    {% block content %}
-    {% endblock %}
-</div>
-
-<div class="mft-osintorg-footer">
-    {% block footer %}
-    <div class="mft-osintorg-footer-contents">
-        Hello World
-    </div>
-    {% endblock %}
-</div>
-
-{% block scripts %}
-{% endblock %}
+</html>

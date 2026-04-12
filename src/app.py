@@ -25,7 +25,7 @@ from config import mft_Config
 # ----------------------------------------------------------
 def create_app():
     app = Flask(__name__)
-    app.mft_Config.from_object(mft_Config)
+    app.config.from_object(mft_Config)
 
     # Initialise extensions
     db.init_app(app)
@@ -36,7 +36,7 @@ def create_app():
     # ----------------------------------------------------------------
     # FIXME: Create DB tables on first run (only for development, replace with Alembic for prod)
     # ----------------------------------------------------------------
-    @app.before_first_request
+    @app.before_request
     def create_tables():
         db.create_all()
 
@@ -45,7 +45,7 @@ def create_app():
 
 @create_app().route('/')
 def indexPage():
-    print(os.getenv("OSINTPROJECT_KEY"))
+    print(os.getenv("SECRET_KEY"))
     return render_template('index.html')
 
 
